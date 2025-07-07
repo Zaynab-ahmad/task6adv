@@ -17,14 +17,14 @@ const BlogDetail = () => {
   }, [dispatch, id]);
 
   return (
-    <div className="myContainer lg:px-16 md:px-[18px] p-4 lg:mt-37 md:mt-27 mt-23 mx-auto flex flex-col">
+    <div className="myContainer lg:px-16 md:px-[18px] p-4 lg:mt-37 md:mt-27 mt-23 mx-auto flex flex-col ">
       <div className="flex md:flex-row flex-col-reverse items-start lg:gap-8 md:gap-4 gap-8">
         <div className="w-full md:w-[44.4%] lg:w-[29.6%]">
           <RecentSec layout="post" />
         </div>
         <div className="w-full md:w-[53.5%] lg:w-[67.65%]">
           <PostDetails />
-          <div className="hidden lg:block">
+          <div className="hidden lg:block mt-8">
             <Subscribe
               smallHeading="Newslatters"
               mainHeading="Stories and interviews"
@@ -33,7 +33,7 @@ const BlogDetail = () => {
           </div>
         </div>
       </div>
-      <div className="block lg:hidden">
+      <div className="block lg:hidden mt-18 md:mt-8">
         <Subscribe
           smallHeading="Newslatters"
           mainHeading="Stories and interviews"
