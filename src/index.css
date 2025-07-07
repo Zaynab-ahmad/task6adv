@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@custom-variant dark (&:where(.dark, .dark *));
+
+@tailwind utilities;
+
+
+@theme {
+    
+    --color-gray: rgba(9, 13, 31, 1);
+    --color-gray-2: rgba(26, 26, 26, 1);
+    --color-gray3: rgba(54, 63, 114, 1);
+    --color-light-gray3: rgba(248, 249, 252, 1);
+    --color-gray-4: rgba(102, 112, 133, 1);
+    --color-gray-5: rgba(192, 197, 208, 1);
+    --color-gray-6: rgba(17, 34, 17, 1);
+    --color-gray-7: rgba(239, 239, 239, 1);
+    --color-gray-8: rgba(208, 213, 221, 1);
+    --color-purple: rgba(105, 65, 198, 1);
+    --color-purple2: rgba(127, 86, 217, 1);
+    --color-light-purple: rgba(249, 245, 255, 1);
+    --color-purple3: rgba(53, 56, 205, 1);
+    --color-light-purple3: rgba(238, 244, 255, 1);
+    --color-red: rgba(193, 21, 116, 1);
+    --color-light-red: rgba(253, 242, 250, 1);
+    --color-green: rgba(2, 106, 162, 1);
+    --color-light-green: rgba(240, 249, 255, 1);
+
+    --font-inter: "Inter", sans-serif;
+
+    --container-myContainer: 88.8889%;
+    --shadow-myShadow: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+}
+
+html {
+    @apply bg-white text-gray-2 dark:bg-gray dark:text-white font-inter ; 
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    :root {
+        --container-myContainer: 96.523%;
+    } 
+}
+@media (max-width: 767px) {
+    :root {
+        --container-myContainer: 95%;
+    }
+}
+@media (max-width: 576px) {
+    :root {
+        --container-myContainer: 92.56%;
+    } 
+}
+@layer utilities {
+    .myContainer {
+        width: var(--container-myContainer);
+        margin-left: auto;
+        margin-right: auto;
+    } }
