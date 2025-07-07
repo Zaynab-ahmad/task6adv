@@ -11,7 +11,7 @@ interface FooterProps {
 
 const Footer = ({ links }: FooterProps) => {
   return (
-    <div className="myContainer flex flex-col-reverse items-center lg:flex-row gap-[30px] lg:gap-[14px] py-[30px] sm:pb-6 text-gray-2 dark:text-white text-xl/[24px] font-normal">
+    <div className="myContainer flex flex-col-reverse items-center lg:flex-row lg:gap-[30px] gap-[14px] py-[30px] sm:pb-6 text-gray-2 dark:text-white text-xl/[24px] font-normal">
       <div>© 2025</div>
       <div className="">
         <ul className="flex flex-col text-center lg:flex-row gap-[14px] list-none">

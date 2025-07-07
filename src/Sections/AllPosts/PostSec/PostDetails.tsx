@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import type { RootState } from "../../redux/store";
-import CategoryBadge from "../CategoryBadge/CategoryBadge";
+import type { RootState } from "../../../redux/store";
+import CategoryBadge from "../../../Components/CategoryBadge/CategoryBadge";
 
 const PostDetails = () => {
   const post = useSelector((state: RootState) => state.posts.selectedPost);
@@ -8,7 +8,7 @@ const PostDetails = () => {
   if (!post) return null;
 
   return (
-    <div className="flex flex-col gap-8 text-gray-4 dark:text-gray-5">
+    <section className="flex flex-col gap-8 text-gray-4 dark:text-gray-5">
       <h3 className="text-purple font-semibold text-sm/[20px]">
         {post.author} •{" "}
         {new Date(post.createdAt).toLocaleDateString("en-GB", {
@@ -182,7 +182,7 @@ const PostDetails = () => {
           ))}
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

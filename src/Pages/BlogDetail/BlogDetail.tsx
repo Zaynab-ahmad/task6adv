@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPostById } from "../../redux/slices";
-import PostDetails from "../../Components/PostSec/PostDetails";
+import PostDetails from "../../Sections/AllPosts/PostSec/PostDetails";
 import RecentSec from "../../Sections/RecentSec/RecentSec";
 import Subscribe from "../../Components/Subscribe/Subscribe";
 
@@ -25,12 +25,20 @@ const BlogDetail = () => {
         <div className="w-full md:w-[53.5%] lg:w-[67.65%]">
           <PostDetails />
           <div className="hidden lg:block">
-            <Subscribe />
+            <Subscribe
+              smallHeading="Newslatters"
+              mainHeading="Stories and interviews"
+              description="Subscribe to learn about new product features, the latest in technology, solutions, and updates."
+            />
           </div>
         </div>
       </div>
       <div className="block lg:hidden">
-        <Subscribe />
+        <Subscribe
+          smallHeading="Newslatters"
+          mainHeading="Stories and interviews"
+          description="Subscribe to learn about new product features, the latest in technology, solutions, and updates."
+        />
       </div>
     </div>
   );

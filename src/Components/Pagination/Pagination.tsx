@@ -41,7 +41,7 @@ const Pagination = () => {
 
   return (
     <div className="flex md:flex-row flex-col items-center justify-between gap-5 text-sm/[20px] font-medium">
-      {/* Previous Button */}
+
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
@@ -60,7 +60,7 @@ const Pagination = () => {
         Previous
       </button>
 
-      {/* Page Buttons */}
+      
       <div className="flex items-center gap-[2px]">
         {getPaginationNumbers().map((page, index) =>
           page === "..." ? (
@@ -86,7 +86,7 @@ const Pagination = () => {
         )}
       </div>
 
-      {/* Next Button */}
+     
       <button
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}

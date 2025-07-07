@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "../../Context/ThemeContext";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 type NavItem = {
   name: string;
@@ -15,7 +15,19 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ navigation, name }) => {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
+
+  const navLinkBaseStyles = `
+  relative inline-block py-1 px-2 transition-all duration-300
+  after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:translate-x-[-50%]
+  after:h-[1px] after:transition-all after:duration-300
+`;
+
+  const getActiveLinkStyles = ({ isActive }: { isActive: boolean }) =>
+    `${navLinkBaseStyles} ${
+      isActive
+        ? "font-bold after:w-4/5 after:bg-gray-2 dark:after:bg-white"
+        : "font-normal after:w-0 after:bg-transparent hover:after:w-full hover:after:bg-gray-200 dark:hover:after:bg-white"
+    }`;
 
 
   return (
@@ -26,21 +38,17 @@ const NavBar: React.FC<NavBarProps> = ({ navigation, name }) => {
         </Link>
 
         <div className="hidden sm:flex justify-between items-center">
-          <div>
+          <ul className="flex gap-[14px]">
             {navigation.map((item) => (
-              <Link
-                to={item.href}
-                className={`relative inline-block p-2 transition-all duration-300 
-                ${
-                  location.pathname === item.href
-                    ? "after:absolute after:left-1/2 after:bottom-0 after:translate-x-[-50%] after:translate-y-[-4px] after:w-[80%] after:h-[1px] after:bg-gray-2 dark:after:bg-white after:transition-all after:duration-300 font-bold"
-                    : "after:absolute after:left-1/2 after:bottom-0 after:translate-x-[-50%] after:translate-y-[-4px] after:w-0 after:h-[1px] after:bg-transparent hover:after:w-full hover:after:bg-gray-200 dark:hover:after:bg-white after:transition-all after:duration-300"
-                }`}
-              >
-                {item.name}
-              </Link>
+              <li key={item.name}>
+                <NavLink to={item.href} className={getActiveLinkStyles}>
+                  {item.name}
+                </NavLink>
+              </li>
             ))}
-          </div>
+          </ul>
+
+          
           <div className="bg-gray dark:bg-white rounded-full transition-all duration-300 flex items-center justify-center gap-4 px-4 py-2 ml-[14px]">
             <button onClick={toggleTheme}>
               <img
@@ -81,48 +89,50 @@ const NavBar: React.FC<NavBarProps> = ({ navigation, name }) => {
 
       {menuOpen && (
         <div className="bg-white dark:bg-gray sm:hidden fixed inset-0 z-40 flex flex-col items-center justify-center text-center">
-          <div className="flex flex-col items-center justify-center gap-13">
+          <div className="flex flex-col items-center justify-center gap-10">
             <Link
               to="/"
-              className={`font-semibold ${menuOpen ? "block" : "hidden"}`}
+              className={`font-semibold text-2xl mb-4`}
+              onClick={() => setMenuOpen(false)}
             >
               {name}
             </Link>
-            <div className="flex flex-col items-center justify-center gap-5">
+
+            <ul className="flex flex-col items-center justify-center gap-6">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="text-xl font-medium"
-                >
-                  {item.name}
-                </Link>
+                <li key={item.name}>
+                  <NavLink
+                    to={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={getActiveLinkStyles}
+                  >
+                    {item.name}
+                  </NavLink>
+                </li>
               ))}
-              <div className="bg-gray dark:bg-white rounded-full transition-all duration-300 flex items-center justify-center gap-4 px-4 py-2">
-                <button onClick={toggleTheme}>
-                  <img
-                    src={
-                      theme === "light" ? "/Icons/sun.svg" : "/Icons/sun2.svg"
-                    }
-                    alt="sun"
-                    className={`transition-transform duration-500 w-6 h-6 ${
-                      theme === "light" ? "rotate-0" : "rotate-180"
-                    }`}
-                  />
-                </button>
-                <button onClick={toggleTheme}>
-                  <img
-                    src={
-                      theme === "light" ? "/Icons/moon.svg" : "/Icons/moon2.svg"
-                    }
-                    alt="moon"
-                    className={`transition-transform duration-500 ${
-                      theme === "light" ? "rotate-180" : "rotate-0"
-                    }`}
-                  />
-                </button>
-              </div>
+            </ul>
+
+            <div className="bg-gray dark:bg-white rounded-full transition-all duration-300 flex items-center justify-center gap-4 px-4 py-2 mt-4">
+              <button onClick={toggleTheme}>
+                <img
+                  src={theme === "light" ? "/Icons/sun.svg" : "/Icons/sun2.svg"}
+                  alt="sun"
+                  className={`transition-transform duration-500 w-6 h-6 ${
+                    theme === "light" ? "rotate-0" : "rotate-180"
+                  }`}
+                />
+              </button>
+              <button onClick={toggleTheme}>
+                <img
+                  src={
+                    theme === "light" ? "/Icons/moon.svg" : "/Icons/moon2.svg"
+                  }
+                  alt="moon"
+                  className={`transition-transform duration-500 ${
+                    theme === "light" ? "rotate-180" : "rotate-0"
+                  }`}
+                />
+              </button>
             </div>
           </div>
         </div>
