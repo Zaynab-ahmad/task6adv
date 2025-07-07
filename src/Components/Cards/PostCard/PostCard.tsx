@@ -55,7 +55,7 @@ const PostCard = ({
         }`}
       />
 
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-start">
         <h3 className="text-purple font-semibold text-sm/[20px] mb-3">
           {post.author} •{" "}
           {new Date(post.createdAt).toLocaleDateString("en-GB", {
@@ -95,7 +95,7 @@ const PostCard = ({
         </p>
 
         {post.categories?.length > 0 && (
-          <div className="mt-auto flex flex-wrap gap-2 mb-3">
+          <div className="flex flex-wrap gap-2 mb-3">
             {post.categories.map((category, index) => (
               <CategoryBadge
                 key={index}
